@@ -10,8 +10,7 @@ const Header = () => {
 }
 
 const headingStyle = {
-    color: 'red',
-    backgroundColor: 'black',
+    color: 'black',
 }
 
 export default Header

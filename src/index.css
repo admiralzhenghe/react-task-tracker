@@ -1,19 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
+body {
+  font-family: Poppins, sans-serif;
+}
+
 .container {
+  border: 1px solid steelblue;
+  border-radius: 5px;
   max-width: 500px;
   margin: 30px auto;
-  overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  overflow: auto;
   padding: 30px;
-  border-radius: 5px;
 }
 
 .header {
+  align-items: center;
+  border: 1px solid black;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .btn {
@@ -22,4 +27,11 @@
   color: white;
   text-align: center;
   padding: 10px 20px 10px 20px;
+}
+
+.task {
+  background: #f4f4f4;
+  margin: 5px;
+  /* padding: 10px 20px; */
+  cursor: pointer;
 }
