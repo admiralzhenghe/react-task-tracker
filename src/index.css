@@ -25,13 +25,27 @@ body {
   border: none;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 65px;
   text-align: center;
-  padding: 10px 20px 10px 20px;
 }
 
 .task {
   background: #f4f4f4;
   margin: 5px;
-  /* padding: 10px 20px; */
-  cursor: pointer;
+  padding: 10px;
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-text {
+  font-weight: bolder;
+}
+
+.task-day {
+  font-size: 14px;
 }
