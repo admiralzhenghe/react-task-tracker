@@ -16,7 +16,6 @@ body {
 
 .header {
   align-items: center;
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -29,6 +28,26 @@ body {
   height: 30px;
   width: 65px;
   text-align: center;
+}
+
+.form-control {
+  margin: 0 0 10px 0;
+}
+
+.form-control input {
+  height: 2em;
+  width: 100%;
+}
+
+.submit-container {
+  text-align: center;
+}
+
+.btn-block {
+  background-color: black;
+  height: 2em;
+  margin: 0 0 5px 0;
+  width: 75%;
 }
 
 .task {

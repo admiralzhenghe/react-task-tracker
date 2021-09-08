@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 const Button = ({ color, id, text, onDelete }) => {
     return (
         <button
-        style = {{backgroundColor: color}}
-        className='btn'
-        onClick={() => onDelete(id)}>
-            {text}
+            style = {{backgroundColor: color}}
+            className='btn'
+            onClick={() => onDelete(id)}>
+                {text}
         </button>
-        )
+    )
 }
 
 Button.defaultProps = {
