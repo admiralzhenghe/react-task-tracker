@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 body {
   font-family: Poppins, sans-serif;
@@ -30,6 +30,10 @@ body {
   text-align: center;
 }
 
+.hide-display {
+  display: none;
+}
+
 .form-control {
   margin: 0 0 10px 0;
 }
@@ -43,11 +47,11 @@ body {
   text-align: center;
 }
 
-.btn-block {
+.save-btn {
   background-color: black;
   height: 2em;
   margin: 0 0 5px 0;
-  width: 75%;
+  width: 20%;
 }
 
 .task {

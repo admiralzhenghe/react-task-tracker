@@ -1,16 +1,16 @@
-import Button from './Button'
+import Button from "./Button";
 
-const Header = () => {
-    return (
-        <header className='header'>
-            <h1 style={ headingStyle }>Task Tracker</h1>
-            <Button color="green" text="Add" />
-        </header>
-    );
-}
+const Header = ({ onAdd }) => {
+  return (
+    <header className="header">
+      <h1 style={headingStyle}>Task Tracker</h1>
+      <Button color="blue" text="Add" buttonMode="add" onAdd={onAdd} />
+    </header>
+  );
+};
 
 const headingStyle = {
-    color: 'black',
-}
+  color: "black",
+};
 
-export default Header
+export default Header;
