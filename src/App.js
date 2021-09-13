@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import SaveTask from "./components/SaveTask";
 import Tasks from "./components/Tasks";
 
 const App = () => {
+  const [display, setDisplay] = useState(false);
+
   const [tasks, setTasks] = useState([
     {
       id: 1,
       text: "Do laundry",
       datetime: "October 10 at 1:30pm",
-      complete: false,
+      complete: true,
     },
     {
       id: 2,
@@ -20,10 +22,19 @@ const App = () => {
   ]);
 
   const handleAdd = () => {
-    let display = document.querySelector(".add-form").classList;
-    if (display.contains("hide-display"))
-      document.querySelector(".add-form").classList.remove("hide-display");
-    else document.querySelector(".add-form").classList.add("hide-display");
+    setDisplay(!display);
+  };
+
+  // Toggles checkbox's checked/unchecked status
+  const handleCheckbox = (id) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.complete = !task.complete;
+          return task;
+        } else return task;
+      })
+    );
   };
 
   const handleDelete = (id) => {
@@ -37,8 +48,8 @@ const App = () => {
   return (
     <div className="container">
       <Header onAdd={handleAdd} />
-      <SaveTask onSave={handleSave} />
-      <Tasks tasks={tasks} buttonMode="delete" onDelete={handleDelete} />
+      {display ? <SaveTask onSave={handleSave} /> : null}
+      <Tasks tasks={tasks} onCheck={handleCheckbox} onDelete={handleDelete} />
     </div>
   );
 };

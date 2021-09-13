@@ -3,11 +3,9 @@ import { useState } from "react";
 const SaveTask = ({ onSave }) => {
   const [text, setText] = useState("");
   const [datetime, setDatetime] = useState("");
-  const [complete, setComplete] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
 
     if (!text) {
       alert("Please add a task");
@@ -18,7 +16,7 @@ const SaveTask = ({ onSave }) => {
       id: Date.now(),
       text: text,
       datetime: datetime,
-      complete: complete,
+      complete: false,
     });
   };
 

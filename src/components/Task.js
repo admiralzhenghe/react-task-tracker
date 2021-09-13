@@ -1,19 +1,25 @@
 import Button from "./Button";
+import Checkbox from "./Checkbox";
 
-const Task = ({ task, buttonMode, onDelete }) => {
+const Task = ({ task, onCheck, onDelete }) => {
   return (
     <div className="task">
       <div className="task-container">
-        <div className="task-text">{task.text}</div>
-        <Button
-          color="red"
-          text="Delete"
-          id={task.id}
-          buttonMode={buttonMode}
-          onDelete={onDelete}
-        />
+        <div className="task-complete-container">
+          <Checkbox task={task} onCheck={onCheck} />
+        </div>
+
+        <div className="task-wrapper">
+          <div className="task-text">{task.text}</div>
+          <div className="task-day">{task.datetime}</div>
+        </div>
       </div>
-      <div className="task-day">{task.datetime}</div>
+
+      <Button
+        color="red"
+        text="Delete"
+        buttonFunction={() => onDelete(task.id)}
+      />
     </div>
   );
 };

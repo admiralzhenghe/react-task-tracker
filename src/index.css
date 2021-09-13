@@ -30,10 +30,6 @@ body {
   text-align: center;
 }
 
-.hide-display {
-  display: none;
-}
-
 .form-control {
   margin: 0 0 10px 0;
 }
@@ -55,14 +51,20 @@ body {
 }
 
 .task {
+  align-items: center;
   background: #f4f4f4;
+  display: flex;
+  justify-content: space-between;
   margin: 5px;
   padding: 10px;
 }
 
 .task-container {
   display: flex;
-  justify-content: space-between;
+}
+
+.task-wrapper {
+  margin-left: 15px;
 }
 
 .task-text {

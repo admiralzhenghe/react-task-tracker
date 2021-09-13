@@ -1,27 +1,15 @@
 import PropTypes from "prop-types";
 
-const Button = ({ color, text, id, buttonMode, onAdd, onDelete }) => {
-  if (buttonMode === "add") {
-    return (
-      <button
-        className="btn"
-        style={{ backgroundColor: color }}
-        onClick={() => onAdd()}
-      >
-        {text}
-      </button>
-    );
-  } else {
-    return (
-      <button
-        className="btn"
-        style={{ backgroundColor: color }}
-        onClick={() => onDelete(id)}
-      >
-        {text}
-      </button>
-    );
-  }
+const Button = ({ color, text, buttonFunction }) => {
+  return (
+    <button
+      className="btn"
+      style={{ backgroundColor: color }}
+      onClick={buttonFunction}
+    >
+      {text}
+    </button>
+  );
 };
 
 Button.defaultProps = {
