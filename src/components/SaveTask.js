@@ -16,8 +16,13 @@ const SaveTask = ({ onSave }) => {
       id: Date.now(),
       text: text,
       datetime: datetime,
+      archived: false,
       complete: false,
     });
+
+    // Clear the form
+    setText("");
+    setDatetime("");
   };
 
   return (
@@ -25,6 +30,7 @@ const SaveTask = ({ onSave }) => {
       <div className="form-control">
         <label>Task</label>
         <input
+          className="task-text"
           type="text"
           placeholder="Add Task"
           value={text}
@@ -36,6 +42,7 @@ const SaveTask = ({ onSave }) => {
       <div className="form-control">
         <label>Date & Time</label>
         <input
+          className="task-datetime"
           type="datetime-local"
           placeholder="Add Date & Time"
           value={datetime}

@@ -1,7 +1,7 @@
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 
-const Task = ({ task, onCheck, onDelete }) => {
+const Task = ({ task, color, text, archiveFunction, onCheck, onDelete }) => {
   return (
     <div className="task">
       <div className="task-container">
@@ -15,11 +15,19 @@ const Task = ({ task, onCheck, onDelete }) => {
         </div>
       </div>
 
-      <Button
-        color="red"
-        text="Delete"
-        buttonFunction={() => onDelete(task.id)}
-      />
+      <div>
+        <Button
+          color={color}
+          text={text}
+          buttonFunction={() => archiveFunction(task.id)}
+        />
+        <span> </span>
+        <Button
+          color="red"
+          text="Delete"
+          buttonFunction={() => onDelete(task.id)}
+        />
+      </div>
     </div>
   );
 };

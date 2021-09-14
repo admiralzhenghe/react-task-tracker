@@ -5,18 +5,21 @@ import Tasks from "./components/Tasks";
 
 const App = () => {
   const [display, setDisplay] = useState(false);
+  const [showArchived, setShowArchived] = useState(false);
 
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      text: "Do laundry",
+      text: "Go jogging",
       datetime: "October 10 at 1:30pm",
+      archived: false,
       complete: true,
     },
     {
       id: 2,
-      text: "Buy food",
+      text: "Buy bread",
       datetime: "October 1 at 5:30pm",
+      archived: true,
       complete: false,
     },
   ]);
@@ -25,7 +28,19 @@ const App = () => {
     setDisplay(!display);
   };
 
-  // Toggles checkbox's checked/unchecked status
+  // Toggle archive
+  const handleToggleArchive = (id) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.archived = !task.archived;
+          return task;
+        } else return task;
+      })
+    );
+  };
+
+  // Toggles checked/unchecked status
   const handleCheckbox = (id) => {
     setTasks(
       tasks.map((task) => {
@@ -45,11 +60,21 @@ const App = () => {
     setTasks([...tasks, task]);
   };
 
+  const handleShowArchived = () => {
+    setShowArchived(!showArchived);
+  };
+
   return (
     <div className="container">
-      <Header onAdd={handleAdd} />
+      <Header onAdd={handleAdd} onShowArchived={handleShowArchived} />
       {display ? <SaveTask onSave={handleSave} /> : null}
-      <Tasks tasks={tasks} onCheck={handleCheckbox} onDelete={handleDelete} />
+      <Tasks
+        tasks={tasks}
+        showArchived={showArchived}
+        archiveFunction={handleToggleArchive}
+        onCheck={handleCheckbox}
+        onDelete={handleDelete}
+      />
     </div>
   );
 };
