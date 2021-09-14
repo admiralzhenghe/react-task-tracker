@@ -1,7 +1,7 @@
 import Task from "./Task";
 
 // Show all unarchived tasks
-const Tasks = ({ tasks, showArchived, archiveFunction, onCheck, onDelete }) => {
+const Tasks = ({ tasks, archiveFunction, showArchived, onCheck, onDelete }) => {
   return (
     <>
       {tasks.map((task) => {

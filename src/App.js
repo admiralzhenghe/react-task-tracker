@@ -28,19 +28,27 @@ const App = () => {
     setDisplay(!display);
   };
 
-  // Toggle archive
+  // Toggle archive/unarchived status
   const handleToggleArchive = (id) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          task.archived = !task.archived;
-          return task;
-        } else return task;
-      })
-    );
+    tasks.forEach((task) => {
+      if (task.id === id) {
+        task.archived = !task.archived;
+        return task;
+      } else return task;
+    });
+    setTasks([...tasks]);
+
+    // setTasks(
+    //   tasks.map((task) => {
+    //     if (task.id === id) {
+    //       task.archived = !task.archived;
+    //       return task;
+    //     } else return task;
+    //   })
+    // );
   };
 
-  // Toggles checked/unchecked status
+  // Toggle checked/unchecked status
   const handleCheckbox = (id) => {
     setTasks(
       tasks.map((task) => {

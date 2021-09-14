@@ -1,13 +1,15 @@
 const Checkbox = ({ task, onCheck }) => {
   return (
-    <>
+    <div className="task-complete">
       <input
-        type="checkbox"
         checked={task.complete}
+        id="checkbox"
         onChange={() => onCheck(task.id)}
+        title={task.complete ? "Mark incomplete" : "Mark complete"}
+        type="checkbox"
       />
-      {/* <span className="checkmark"></span> */}
-    </>
+      <label htmlFor="checkbox"></label>
+    </div>
   );
 };
 

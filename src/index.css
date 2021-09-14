@@ -78,3 +78,21 @@ body {
 .task-day {
   font-size: 14px;
 }
+
+.task-complete-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  accent-color: green;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  /* -webkit-appearance: none; */
+}
+
+input[type="checkbox"]:hover {
+  filter: brightness(75%);
+}
