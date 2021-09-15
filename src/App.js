@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
 import Header from "./components/Header";
 import SaveTask from "./components/SaveTask";
 import Tasks from "./components/Tasks";
@@ -19,7 +20,14 @@ const App = () => {
       id: 2,
       text: "Buy bread",
       datetime: "October 1 at 5:30pm",
-      archived: true,
+      archived: false,
+      complete: false,
+    },
+    {
+      id: 3,
+      text: "Wash sink",
+      datetime: "October 15 at 2:30pm",
+      archived: false,
       complete: false,
     },
   ]);
@@ -76,13 +84,15 @@ const App = () => {
     <div className="container">
       <Header onAdd={handleAdd} onShowArchived={handleShowArchived} />
       {display ? <SaveTask onSave={handleSave} /> : null}
-      <Tasks
-        tasks={tasks}
-        showArchived={showArchived}
-        archiveFunction={handleToggleArchive}
-        onCheck={handleCheckbox}
-        onDelete={handleDelete}
-      />
+      <DragDropContext>
+        <Tasks
+          tasks={tasks}
+          showArchived={showArchived}
+          archiveFunction={handleToggleArchive}
+          onCheck={handleCheckbox}
+          onDelete={handleDelete}
+        />
+      </DragDropContext>
     </div>
   );
 };
