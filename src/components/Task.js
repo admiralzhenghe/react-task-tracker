@@ -14,7 +14,7 @@ const Task = ({
   return (
     <Draggable key={task.id} draggableId={String(task.id)} index={index}>
       {(provided) => (
-        <div
+        <li
           className="task"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -44,7 +44,7 @@ const Task = ({
               buttonFunction={() => onDelete(task.id)}
             />
           </div>
-        </div>
+        </li>
       )}
     </Draggable>
   );

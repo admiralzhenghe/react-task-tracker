@@ -80,11 +80,19 @@ const App = () => {
     setShowArchived(!showArchived);
   };
 
+  const handleOneDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(tasks);
+    const [reorderedItems] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItems);
+    setTasks([...items]);
+  };
+
   return (
     <div className="container">
       <Header onAdd={handleAdd} onShowArchived={handleShowArchived} />
       {display ? <SaveTask onSave={handleSave} /> : null}
-      <DragDropContext>
+      <DragDropContext onDragEnd={handleOneDragEnd}>
         <Tasks
           tasks={tasks}
           showArchived={showArchived}

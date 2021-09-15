@@ -27,6 +27,7 @@ const Tasks = ({ tasks, archiveFunction, showArchived, onCheck, onDelete }) => {
               );
             }
           })}
+          {provided.placeholder}
         </div>
       )}
     </Droppable>
