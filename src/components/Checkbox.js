@@ -2,7 +2,7 @@ const Checkbox = ({ task, onCheck }) => {
   return (
     <div className="task-complete">
       <input
-        checked={task.complete}
+        checked={task.completed}
         id="checkbox"
         onChange={() => onCheck(task.id)}
         title={task.complete ? "Mark incomplete" : "Mark complete"}
