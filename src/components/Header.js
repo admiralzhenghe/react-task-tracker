@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const Header = ({ onAdd, onShowArchived }) => {
+const Header = ({ showAdd, showArchived, onAdd, onShowArchived }) => {
   return (
     <header className="header">
       <h1 style={headingStyle}>Task Tracker</h1>
@@ -11,7 +11,11 @@ const Header = ({ onAdd, onShowArchived }) => {
           buttonFunction={onShowArchived}
         />
         <span> </span>
-        <Button color="blue" text="Add" buttonFunction={onAdd} />
+        <Button
+          color={showAdd ? "red" : "blue"}
+          text={showAdd ? "Close" : "Add"}
+          buttonFunction={onAdd}
+        />
       </div>
     </header>
   );

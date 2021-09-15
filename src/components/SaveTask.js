@@ -17,7 +17,7 @@ const SaveTask = ({ onSave }) => {
       text: text,
       datetime: datetime,
       archived: false,
-      complete: false,
+      completed: false,
     });
 
     // Clear the form

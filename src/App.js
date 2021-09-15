@@ -1,79 +1,93 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Header from "./components/Header";
 import SaveTask from "./components/SaveTask";
 import Tasks from "./components/Tasks";
 
 const App = () => {
-  const [display, setDisplay] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
   const [showArchived, setShowArchived] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Go jogging",
-      datetime: "October 10 at 1:30pm",
-      archived: false,
-      complete: true,
-    },
-    {
-      id: 2,
-      text: "Buy bread",
-      datetime: "October 1 at 5:30pm",
-      archived: false,
-      complete: false,
-    },
-    {
-      id: 3,
-      text: "Wash sink",
-      datetime: "October 15 at 2:30pm",
-      archived: false,
-      complete: false,
-    },
-  ]);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch("http://localhost:5000/tasks");
+      const data = await response.json();
+      setTasks(data);
+    };
+
+    fetchTasks();
+  }, []);
 
   const handleAdd = () => {
-    setDisplay(!display);
+    setShowAdd(!showAdd);
   };
 
   // Toggle archive/unarchived status
-  const handleToggleArchive = (id) => {
-    tasks.forEach((task) => {
-      if (task.id === id) {
-        task.archived = !task.archived;
-        return task;
-      } else return task;
-    });
-    setTasks([...tasks]);
-
-    // setTasks(
-    //   tasks.map((task) => {
-    //     if (task.id === id) {
-    //       task.archived = !task.archived;
-    //       return task;
-    //     } else return task;
-    //   })
-    // );
-  };
-
-  // Toggle checked/unchecked status
-  const handleCheckbox = (id) => {
+  const handleToggleArchive = async (id) => {
+    let status = null;
     setTasks(
       tasks.map((task) => {
         if (task.id === id) {
-          task.complete = !task.complete;
+          task.archived = !task.archived;
+          status = task.archived;
           return task;
         } else return task;
       })
     );
+
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        archived: status,
+      }),
+    });
   };
 
-  const handleDelete = (id) => {
+  // Toggle checked/unchecked status
+  const handleCheckbox = async (id) => {
+    let status = null;
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.completed = !task.completed;
+          status = task.completed;
+          return task;
+        } else return task;
+      })
+    );
+
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        completed: status,
+      }),
+    });
+  };
+
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: "DELETE",
+    });
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const handleSave = (task) => {
-    setTasks([...tasks, task]);
+  const handleSave = async (task) => {
+    const response = await fetch(`http://localhost:5000/tasks/`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+    const data = await response.json();
+    setTasks([...tasks, data]);
   };
 
   const handleShowArchived = () => {
@@ -90,8 +104,13 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header onAdd={handleAdd} onShowArchived={handleShowArchived} />
-      {display ? <SaveTask onSave={handleSave} /> : null}
+      <Header
+        showAdd={showAdd}
+        showArchived={showArchived}
+        onAdd={handleAdd}
+        onShowArchived={handleShowArchived}
+      />
+      {showAdd ? <SaveTask onSave={handleSave} /> : null}
       <DragDropContext onDragEnd={handleOneDragEnd}>
         <Tasks
           tasks={tasks}
